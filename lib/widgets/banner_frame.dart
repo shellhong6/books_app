@@ -1,0 +1,39 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:books_app/widgets/image_frame.dart';
+import 'package:books_app/widgets/empty_holder.dart';
+import 'package:books_app/common/constants.dart';
+
+class BannerFrame extends StatelessWidget{
+
+  final dynamic bannerModule;
+  static const double radius = 3.0;
+  SwiperController controller = new SwiperController();
+
+  BannerFrame(this.bannerModule);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 120,
+      child: new Swiper(
+        itemBuilder: (BuildContext context, int index) {
+          if (bannerModule != null) {
+            return Padding(
+              padding: EdgeInsets.only(right: 5,left: 5),
+              child: ImageFrame(url: bannerModule.items[index].imgUrl, radius: radius),
+            );
+          } else {
+            return Padding(
+              padding: EdgeInsets.only(right: 5,left: 5),
+              child: EmptyHolder(-1, -1, 3)
+            );
+          }
+        },
+        itemCount: bannerModule==null ? 3 : bannerModule.items.length,
+        viewportFraction: .9,
+        controller: controller
+      ),
+    );
+  }
+}
