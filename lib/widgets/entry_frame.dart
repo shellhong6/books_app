@@ -8,9 +8,9 @@ class EntryFrame extends StatelessWidget{
   static const double radius = 2.0;
   static const double width = 40;
   static const double height = 40;
-  static const double icon2Text = 5;
+  static const double icon2Text = 1;
   static const double fontSize = 12;
-  static const double paddingTop = 14;
+  static const double paddingTop = 10;
   static const double paddingBottom = 8;
 
   EntryFrame(this.entryModule);
@@ -30,16 +30,23 @@ class EntryFrame extends StatelessWidget{
     );
   }
 
-  Padding createItem (children) {
+  Padding createItem (List<Widget> children, var item) {
     return Padding(
       padding: EdgeInsets.only(top: paddingTop, bottom: paddingBottom, left: 14, right: 14),
-      child: SizedBox(
-        height: fontSize + icon2Text + 2 + height,
-        width: 40,
-        child: Column(
-          children: children,
+      child: GestureDetector(
+        onTap: () {
+          if (item != null) {
+            print('item.title--${item.title}');
+          }
+        },
+        child: SizedBox(
+          height: fontSize + icon2Text + 2 + height,
+          width: 40,
+          child: Column(
+            children: children,
+          ),
         ),
-      ),
+      )
     );
   }
 
@@ -56,7 +63,7 @@ class EntryFrame extends StatelessWidget{
               fontSize: fontSize
             )
           )
-        ]));
+        ], null));
       }
     } else {
       var items = entryModule.items;
@@ -73,7 +80,7 @@ class EntryFrame extends StatelessWidget{
               fontSize: fontSize
             )
           )
-        ]));
+        ], items[i]));
       }
     }
     return widgets;

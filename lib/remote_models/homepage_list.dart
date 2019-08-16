@@ -57,6 +57,9 @@ part 'homepage_list.g.dart';
   @JsonKey(name: 'type')
   String type;
 
+  @JsonKey(name: 'title')
+  String title;
+
   @JsonKey(name: 'showMore')
   bool showMore;
 
@@ -78,7 +81,7 @@ part 'homepage_list.g.dart';
   @JsonKey(name: 'items')
   List<Items> items;
 
-  Modules(this.id,this.type,this.showMore,this.showType,this.showNum,this.endTime,this.canDownload,this.targetType,this.items,);
+  Modules(this.id,this.type,this.title,this.showMore,this.showType,this.showNum,this.endTime,this.canDownload,this.targetType,this.items,);
 
   factory Modules.fromJson(Map<String, dynamic> srcJson) => _$ModulesFromJson(srcJson);
 
@@ -90,11 +93,20 @@ part 'homepage_list.g.dart';
 @JsonSerializable()
   class Items extends Object {
 
+  @JsonKey(name: 'bookId')
+  int bookId;
+
   @JsonKey(name: 'title')
   String title;
 
   @JsonKey(name: 'text')
   String text;
+
+  @JsonKey(name: 'name')
+  String name;
+
+  @JsonKey(name: 'coverUrl')
+  String coverUrl;
 
   @JsonKey(name: 'imgUrl')
   String imgUrl;
@@ -102,7 +114,7 @@ part 'homepage_list.g.dart';
   @JsonKey(name: 'linkUrl')
   String linkUrl;
 
-  Items(this.title,this.text,this.imgUrl,this.linkUrl,);
+  Items(this.title,this.text,this.name,this.coverUrl,this.imgUrl,this.linkUrl,);
 
   factory Items.fromJson(Map<String, dynamic> srcJson) => _$ItemsFromJson(srcJson);
 

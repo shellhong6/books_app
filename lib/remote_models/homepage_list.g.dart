@@ -47,6 +47,7 @@ Modules _$ModulesFromJson(Map<String, dynamic> json) {
   return Modules(
     json['id'] as int,
     json['type'] as String,
+    json['title'] as String,
     json['showMore'] as bool,
     json['showType'] as String,
     json['showNum'] as int,
@@ -63,6 +64,7 @@ Modules _$ModulesFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$ModulesToJson(Modules instance) => <String, dynamic>{
       'id': instance.id,
       'type': instance.type,
+      'title': instance.title,
       'showMore': instance.showMore,
       'showType': instance.showType,
       'showNum': instance.showNum,
@@ -76,14 +78,19 @@ Items _$ItemsFromJson(Map<String, dynamic> json) {
   return Items(
     json['title'] as String,
     json['text'] as String,
+    json['name'] as String,
+    json['coverUrl'] as String,
     json['imgUrl'] as String,
     json['linkUrl'] as String,
-  );
+  )..bookId = json['bookId'] as int;
 }
 
 Map<String, dynamic> _$ItemsToJson(Items instance) => <String, dynamic>{
+      'bookId': instance.bookId,
       'title': instance.title,
       'text': instance.text,
+      'name': instance.name,
+      'coverUrl': instance.coverUrl,
       'imgUrl': instance.imgUrl,
       'linkUrl': instance.linkUrl,
     };
