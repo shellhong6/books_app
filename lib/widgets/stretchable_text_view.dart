@@ -17,6 +17,7 @@ class StretchableTextView extends StatefulWidget {
 class StretchableTextViewState extends State<StretchableTextView> {
   List<Widget> shrinkWidgets = [];
   List<Widget> stretchWidgets = [];
+  List<Widget> widgets = [];
   bool isStretch = false;
   // double lineHeight = 0;
   @override
@@ -40,13 +41,8 @@ class StretchableTextViewState extends State<StretchableTextView> {
         if (i < widget.maxLines - 1) {
           shrinkWidgets.add(this.createLineText(temp1));
         } else if (i == widget.maxLines - 1) {
-          // temp2 = this.getOneLineText(_text.substring(0, index == -1 ? _text.length : index), containerW, painter, isLast: true);
-          // shrinkWidgets.add(
-          //   this.createWrapLineText(
-          //     this.createTextSpan(temp2, true)
-          //   )
-          // );
           temp2 = this.getOneLineText(_text.substring(0, index == -1 ? _text.length : index), containerW, painter, isLast: true);
+          // shrinkWidgets.add(this.createLineText(temp2));
           shrinkWidgets.add(
             this.createWrapLine(
               Row(
@@ -76,6 +72,7 @@ class StretchableTextViewState extends State<StretchableTextView> {
         }
         i++;
       }
+      this.widgets = this.shrinkWidgets;
       this.setState((){});
     });
   }
@@ -140,33 +137,20 @@ class StretchableTextViewState extends State<StretchableTextView> {
 
   @override
   Widget build(BuildContext context) {
-    if (this.isStretch) {
-      return FlatButton(
-        color: Colors.transparent,
-        highlightColor: Colors.transparent,
-        splashColor: Colors.transparent,
-        padding: EdgeInsets.all(0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: stretchWidgets,
-        ),
-        onPressed: () {
-          isStretch = false;
-          this.setState((){});
-        }
-      );
-    }
-    return FlatButton(
-      color: Colors.transparent,
-      highlightColor: Colors.transparent,
-      splashColor: Colors.transparent,
-      padding: EdgeInsets.all(0),
+    return GestureDetector(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: shrinkWidgets,
+        children: this.widgets,
       ),
-      onPressed: () {
-        isStretch = true;
+      onTap: () {
+        if (isStretch) {
+          this.widgets = this.shrinkWidgets;
+        } else {
+          this.widgets = this.stretchWidgets;
+        }
+        isStretch = !isStretch;
+        print(this.widgets.length);
+        print(isStretch);
         this.setState((){});
       }
     );
