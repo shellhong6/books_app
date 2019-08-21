@@ -6,7 +6,8 @@ class StretchableTextView extends StatefulWidget {
   final TextStyle textStyle;
   final String text;
   final TextSpan spreadBtn;
-  StretchableTextView({Key key, this.text, this.maxLines = 3, this.textStyle = const TextStyle(fontSize: fontSize, color: Colors.black), this.spreadBtn}):super(key:key);
+  final String suffix;
+  StretchableTextView({Key key, this.text, this.maxLines = 3, this.textStyle = const TextStyle(fontSize: fontSize, color: Colors.black), this.spreadBtn, this.suffix = '...'}):super(key:key);
   @override
   State<StatefulWidget> createState() {
     return StretchableTextViewState();
@@ -16,13 +17,12 @@ class StretchableTextView extends StatefulWidget {
 class StretchableTextViewState extends State<StretchableTextView> {
   List<Widget> shrinkWidgets = [];
   List<Widget> stretchWidgets = [];
-  bool _isStrctch = false;
-  double minH = 0;
-  double maxH = 0;
-  double offset = 2;
+  bool isStretch = false;
+  // double lineHeight = 0;
   @override
   void initState() {
     super.initState();
+    // lineHeight = (widget.textStyle?.fontSize??StretchableTextView.fontSize) * (widget.textStyle?.height);
     TextPainter painter = new TextPainter();
     painter.textDirection = TextDirection.ltr;
     WidgetsBinding.instance.addPostFrameCallback((callback){
@@ -36,14 +36,37 @@ class StretchableTextViewState extends State<StretchableTextView> {
       while (_text.length != 0) {
         int index = _text.indexOf(mulLineSel);
         temp1 = this.getOneLineText(_text.substring(0, index == -1 ? _text.length : index), containerW, painter, isLast: false);
-        stretchWidgets.add(this.createText(temp1));
+        stretchWidgets.add(this.createLineText(temp1));
         if (i < widget.maxLines - 1) {
-          shrinkWidgets.add(this.createText(temp1));
+          shrinkWidgets.add(this.createLineText(temp1));
         } else if (i == widget.maxLines - 1) {
+          // temp2 = this.getOneLineText(_text.substring(0, index == -1 ? _text.length : index), containerW, painter, isLast: true);
+          // shrinkWidgets.add(
+          //   this.createWrapLineText(
+          //     this.createTextSpan(temp2, true)
+          //   )
+          // );
           temp2 = this.getOneLineText(_text.substring(0, index == -1 ? _text.length : index), containerW, painter, isLast: true);
           shrinkWidgets.add(
-            RichText(
-              text: this.createTextSpan(temp2, true)
+            this.createWrapLine(
+              Row(
+                children: <Widget>[
+                  RichText(
+                    text: TextSpan(
+                      text: temp2 + widget.suffix,
+                      style: widget.textStyle
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: RichText(
+                      textAlign: TextAlign.right,
+                      text: widget.spreadBtn??this.createSpreadBtn(),
+                    ),
+                  )
+                  
+                ],
+              )
             )
           );
         }
@@ -72,16 +95,10 @@ class StretchableTextViewState extends State<StretchableTextView> {
   TextSpan createTextSpan (String text, bool isLast) {
     if (isLast) {
       return TextSpan(
-        text: text + '...   ',
+        text: text + '${widget.suffix}   ',
         style: widget.textStyle,
         children: [
-          widget.spreadBtn??TextSpan(
-            text: '更多',
-            style: TextStyle(
-              color: Colors.blue[200],
-              fontSize: (widget.textStyle?.fontSize)??StretchableTextView.fontSize
-            ),
-          )
+          widget.spreadBtn??this.createSpreadBtn()
         ]
       );
     } else {
@@ -92,25 +109,38 @@ class StretchableTextViewState extends State<StretchableTextView> {
     }
   }
 
-  SizedBox createText (String text) {
+  TextSpan createSpreadBtn () {
+    return TextSpan(
+      text: '更多',
+      style: TextStyle(
+        color: Colors.blue[200],
+        fontSize: (widget.textStyle?.fontSize)??StretchableTextView.fontSize
+      ),
+    );
+  }
+
+  SizedBox createWrapLine (Widget widget) {
     return SizedBox(
-      height: ((widget.textStyle?.fontSize??StretchableTextView.fontSize) * (widget.textStyle?.height)),
+      // height: lineHeight,
       width: this.context.findRenderObject().paintBounds.width,
-      child: RichText(
+      child: widget,
+    );
+  }
+
+  SizedBox createLineText (String text) {
+    return createWrapLine(
+      RichText(
         text: TextSpan(
           text: text,
           style: widget.textStyle
         ),
-      ),
-      // child: Text(text,
-      //   style: widget.textStyle
-      // )
+      )
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    if (this._isStrctch) {
+    if (this.isStretch) {
       return FlatButton(
         color: Colors.transparent,
         highlightColor: Colors.transparent,
@@ -121,7 +151,7 @@ class StretchableTextViewState extends State<StretchableTextView> {
           children: stretchWidgets,
         ),
         onPressed: () {
-          _isStrctch = false;
+          isStretch = false;
           this.setState((){});
         }
       );
@@ -136,7 +166,7 @@ class StretchableTextViewState extends State<StretchableTextView> {
         children: shrinkWidgets,
       ),
       onPressed: () {
-        _isStrctch = true;
+        isStretch = true;
         this.setState((){});
       }
     );
