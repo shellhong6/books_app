@@ -4,7 +4,6 @@ import 'package:books_app/widgets/empty_holder.dart';
 class BlockEmptyRowFrame extends StatelessWidget{
 
   final bool finishRequest;
-  double viewWidth;
   static const double radius = 2.0;
   static const double fontSize = 12;
   static const double icon2Text = 5;
@@ -19,7 +18,6 @@ class BlockEmptyRowFrame extends StatelessWidget{
     if (finishRequest) {
       return SizedBox(height: 0, width: 0,);
     }
-    viewWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.only(left: viewHorizontal, right: viewHorizontal, bottom: 10),
       child: Column(
@@ -31,7 +29,7 @@ class BlockEmptyRowFrame extends StatelessWidget{
           ),
           Wrap(
             children: getWidgets(),
-            spacing: (viewWidth - 2 * viewHorizontal - 4 * ImgWidth) / 3,
+            spacing: (MediaQuery.of(context).size.width - 2 * viewHorizontal - 4 * ImgWidth) / 3,
             runSpacing: 15,
           )
         ]

@@ -6,3 +6,7 @@ class AppColors {
 class AppApi {
   static const String homepageList = 'http://blog.shellhong.com/demo/api/book_homepage/homepage_list.json';
 }
+
+class RouteKeys {
+  static const String bookDetail = 'book_detail';
+}

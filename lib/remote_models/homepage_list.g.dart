@@ -82,7 +82,12 @@ Items _$ItemsFromJson(Map<String, dynamic> json) {
     json['coverUrl'] as String,
     json['imgUrl'] as String,
     json['linkUrl'] as String,
-  )..bookId = json['bookId'] as int;
+  )
+    ..bookId = json['bookId'] as int
+    ..author = json['author'] as String
+    ..shortDesc = json['shortDesc'] as String
+    ..endStatus = json['endStatus'] as String
+    ..category = json['category'] as String;
 }
 
 Map<String, dynamic> _$ItemsToJson(Items instance) => <String, dynamic>{
@@ -90,6 +95,10 @@ Map<String, dynamic> _$ItemsToJson(Items instance) => <String, dynamic>{
       'title': instance.title,
       'text': instance.text,
       'name': instance.name,
+      'author': instance.author,
+      'shortDesc': instance.shortDesc,
+      'endStatus': instance.endStatus,
+      'category': instance.category,
       'coverUrl': instance.coverUrl,
       'imgUrl': instance.imgUrl,
       'linkUrl': instance.linkUrl,

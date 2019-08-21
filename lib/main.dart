@@ -6,6 +6,8 @@ import 'package:books_app/models/main.dart';
 import 'package:books_app/reducers/main.dart';
 import 'package:books_app/views/home/index.dart';
 import 'package:books_app/common/theme.dart';
+import 'package:books_app/common/constants.dart';
+import 'package:books_app/views/detail/index.dart';
 
 void main() {
   // debugPaintSizeEnabled = true;
@@ -34,6 +36,9 @@ class MyApp extends StatelessWidget {
             //   // },
             );
           },
+          RouteKeys.bookDetail: (context) {
+            return DetailRoute();
+          }
         },
       ),
     );

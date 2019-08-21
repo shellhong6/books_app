@@ -105,6 +105,18 @@ part 'homepage_list.g.dart';
   @JsonKey(name: 'name')
   String name;
 
+  @JsonKey(name: 'author')
+  String author;
+
+  @JsonKey(name: 'shortDesc')
+  String shortDesc;
+
+  @JsonKey(name: 'endStatus')
+  String endStatus;
+
+  @JsonKey(name: 'category')
+  String category;
+
   @JsonKey(name: 'coverUrl')
   String coverUrl;
 
