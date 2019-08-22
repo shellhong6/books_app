@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:books_app/widgets/empty_holder.dart';
 import 'package:books_app/widgets/image_frame.dart';
+import 'package:books_app/common/utils.dart';
 
 class EntryFrame extends StatelessWidget{
 
@@ -36,7 +37,7 @@ class EntryFrame extends StatelessWidget{
       child: GestureDetector(
         onTap: () {
           if (item != null) {
-            print('item.title--${item.title}');
+            toast('正在快马加鞭为你开发"${item.title}"功能 /(ㄒoㄒ)/~~');
           }
         },
         child: SizedBox(

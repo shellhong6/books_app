@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:books_app/widgets/image_frame.dart';
 import 'package:books_app/widgets/block_header.dart';
+import 'package:books_app/common/constants.dart';
 
 class BlockColumnFrame extends StatelessWidget{
 
@@ -36,7 +37,11 @@ class BlockColumnFrame extends StatelessWidget{
   GestureDetector createItem (List<Widget> children, var item, BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print('item.bookId--${item.bookId}');
+        Navigator.pushNamed(context, RouteKeys.bookDetail, 
+          arguments: <String, Object>{
+            'data': item,
+          }
+        );
       },
       child: Row(
         children: children,

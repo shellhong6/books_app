@@ -50,7 +50,6 @@ class BlockRowFrame extends StatelessWidget{
               'data': item,
             }
           );
-          print('item.bookId--${item.bookId}');
         },
         child: Column(
           children: children,

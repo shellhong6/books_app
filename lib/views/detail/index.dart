@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'dart:convert';
+import 'dart:math';
 import 'package:books_app/widgets/image_frame.dart';
 import 'package:flutter/rendering.dart';
 import 'package:books_app/widgets/stretchable_text_view.dart';
@@ -170,7 +171,7 @@ class DetailRouteState extends State<DetailRoute>
   initData() async {
     HomepageList homePageList = await getData();
     if (RequestManage.isOk(homePageList)) {
-      this.module = homePageList.value[0].modules[4];
+      this.module = homePageList.value[0].modules[Random().nextBool() ? 2 : 4];
       this.module.title = '更多好书推荐';
       this.setState((){});
     }
