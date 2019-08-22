@@ -59,8 +59,7 @@ class StretchableTextViewState extends State<StretchableTextView> {
                       textAlign: TextAlign.right,
                       text: widget.spreadBtn??this.createSpreadBtn(),
                     ),
-                  )
-                  
+                  ),
                 ],
               )
             )
@@ -149,8 +148,6 @@ class StretchableTextViewState extends State<StretchableTextView> {
           this.widgets = this.stretchWidgets;
         }
         isStretch = !isStretch;
-        print(this.widgets.length);
-        print(isStretch);
         this.setState((){});
       }
     );

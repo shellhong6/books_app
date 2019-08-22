@@ -16,7 +16,6 @@ class BlockColumnFrame extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    print('module--$module');    
     if (module == null) {
       return SizedBox(
         width: 0,
