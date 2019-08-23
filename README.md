@@ -2,11 +2,8 @@
 
 A simple Flutter project about reading
 
-<img width="300px" src="http://blog.shellhong.com/demo/images/homepage.jpg">
+<img src="readme-images/homepage.jpg" height="300em" /><img src="readme-images/detail.jpg" height="300em" /><img src="readme-images/homepage.gif" height="300em" />
 
-<img width="300px" src="http://blog.shellhong.com/demo/images/detail.jpg">
-<p></p>
-
-[to see the video](http://blog.shellhong.com/demo/images/homepage.mp4)
+* getting examples about flutter, view: [flutter_examples](https://github.com/shellhong6/flutter_examples)
 
 ## Show some :heart: and star the repo to support the project
