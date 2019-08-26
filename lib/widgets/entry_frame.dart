@@ -41,7 +41,7 @@ class EntryFrame extends StatelessWidget{
           }
         },
         child: SizedBox(
-          height: fontSize + icon2Text + 2 + height,
+          height: fontSize * 1.2  + icon2Text + 2 + height,
           width: 40,
           child: Column(
             children: children,

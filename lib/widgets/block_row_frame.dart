@@ -41,7 +41,7 @@ class BlockRowFrame extends StatelessWidget{
 
   SizedBox createItem (List<Widget> children, var item, BuildContext context) {
     return SizedBox(
-      height: fontSize * 2 + icon2Text + ImgHeight + 7,
+      height: fontSize * 2 * 1.2 + icon2Text + ImgHeight + 7,
       width: ImgWidth,
       child: GestureDetector(
         onTap: () {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+// import 'package:flutter/rendering.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:books_app/models/main.dart';
@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
             return DetailRoute();
           }
         },
+        debugShowCheckedModeBanner: false,
       ),
     );
   }
