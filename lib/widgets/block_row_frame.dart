@@ -32,7 +32,7 @@ class BlockRowFrame extends StatelessWidget{
           Wrap(
             children: getWidgets(context),
             spacing: (MediaQuery.of(context).size.width - 2 * viewHorizontal - 4 * ImgWidth) / 3,
-            runSpacing: 15,
+            runSpacing: 10,
           )
         ]
       ),
@@ -41,7 +41,7 @@ class BlockRowFrame extends StatelessWidget{
 
   SizedBox createItem (List<Widget> children, var item, BuildContext context) {
     return SizedBox(
-      height: fontSize * 2 * 1.2 + icon2Text + ImgHeight + 7,
+      height: fontSize * 2 * 1.2 + icon2Text + ImgHeight + 12,
       width: ImgWidth,
       child: GestureDetector(
         onTap: () {
@@ -73,7 +73,6 @@ class BlockRowFrame extends StatelessWidget{
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            height: 1.2,
             fontSize: fontSize,
             color: Colors.black,
           )

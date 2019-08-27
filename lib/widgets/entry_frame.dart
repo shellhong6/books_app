@@ -18,7 +18,7 @@ class EntryFrame extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    double containerH = fontSize + icon2Text + 2 + height + paddingTop + paddingBottom;
+    double containerH = fontSize * 1.2 + icon2Text + 2 + height + paddingTop + paddingBottom;
     return SizedBox(
       height: containerH,
       child: Padding(
